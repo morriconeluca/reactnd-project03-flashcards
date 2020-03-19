@@ -1,28 +1,25 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {getDecks, getDeck, saveDeckTitle, addCardToDeck} from './utils/api';
+import {getDecks,saveDeckTitle, addCardToDeck} from './utils/api';
 
 export default function App() {
   useEffect(() => {
-    // getDecks().then(() => {
-    //   saveDeckTitle('Python').then(() => {
-    //     addCardToDeck('Python', {
-    //       question: 'q1',
-    //       answer: 'a1'
-    //     }).then(() => {
-    //       addCardToDeck('Python', {
-    //         question: 'q2',
-    //         answer: 'a2'
-    //       }).then(() => {
-    //         getDecks().then(decks => {
-    //           console.log(decks);
-    //         });
-    //       });
-    //     });
-    //   });
-    // });
-    getDeck('React').then(deck => {
-      console.log(deck);
+    getDecks().then(() => {
+      saveDeckTitle('Python').then(() => {
+        addCardToDeck('Python', {
+          question: 'q1',
+          answer: 'a1'
+        }).then(() => {
+          addCardToDeck('Python', {
+            question: 'q2',
+            answer: 'a2'
+          }).then(() => {
+            getDecks().then(decks => {
+              console.log(decks);
+            });
+          });
+        });
+      });
     });
   }, []);
 
