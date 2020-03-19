@@ -1,4 +1,8 @@
-const dummyData = {
+import {AsyncStorage} from 'react-native';
+
+export const FLASHCARDS_STORAGE_KEY = '@flashcards_Storage_Key';
+
+export const dummyData = {
   React: {
     title: 'React',
     questions: [
