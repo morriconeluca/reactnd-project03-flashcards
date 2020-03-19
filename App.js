@@ -1,32 +1,21 @@
 import React, {useEffect} from 'react';
+import {Provider} from 'react-redux';
+import store from './store';
+import {handleGetDecks} from './actions';
 import {StyleSheet, Text, View} from 'react-native';
-import {getDecks,saveDeckTitle, addCardToDeck} from './utils/api';
+
+import DeckList from './screens/DeckList';
+
 
 export default function App() {
   useEffect(() => {
-    getDecks().then(() => {
-      saveDeckTitle('Python').then(() => {
-        addCardToDeck('Python', {
-          question: 'q1',
-          answer: 'a1'
-        }).then(() => {
-          addCardToDeck('Python', {
-            question: 'q2',
-            answer: 'a2'
-          }).then(() => {
-            getDecks().then(decks => {
-              console.log(decks);
-            });
-          });
-        });
-      });
-    });
+    store.dispatch(handleGetDecks());
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <Provider store={store}>
+      <DeckList />
+    </Provider>
   );
 }
 
