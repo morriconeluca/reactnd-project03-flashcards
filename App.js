@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {storeData, getData} from './utils/api';
+import {getDecks, saveDeckTitle} from './utils/api';
 
 export default function App() {
   useEffect(() => {
-    storeData().then(() => {
-      getData().then(data => {
-        console.log(JSON.parse(data));
-      });
+    getDecks().then(() => {
+      saveDeckTitle('Python').then(() => {
+        getDecks().then(decks => {
+          console.log(decks);
+        });
+      })
     });
   }, []);
 

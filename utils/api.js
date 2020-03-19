@@ -1,20 +1,26 @@
 import {AsyncStorage} from 'react-native';
 
-import {FLASHCARDS_STORAGE_KEY, dummyData} from './helpers';
+import {FLASHCARDS_STORAGE_KEY, formatDecksResults} from './helpers';
 
-export const storeData = async () => {
+// Return all of the decks along with their titles, questions, and answers.
+export const getDecks = async () => {
   try {
-    // AsyncStorage.setItem returns null everytime but it is enough to resolve the promise
-    await AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(dummyData));
+    const decks = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY);
+    return formatDecksResults(decks);
   } catch (error) {
     console.log(error);
   }
 }
 
-export const getData = async () => {
+// Add title to a new deck.
+export const saveDeckTitle = async title => {
   try {
-    return await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY);
+    await AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
+      [title]: {
+        title
+      }
+    }));
   } catch (error) {
     console.log(error);
   }
-}
+};

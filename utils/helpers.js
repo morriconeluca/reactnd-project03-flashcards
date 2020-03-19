@@ -2,7 +2,7 @@ import {AsyncStorage} from 'react-native';
 
 export const FLASHCARDS_STORAGE_KEY = '@flashcards_Storage_Key';
 
-export const dummyData = {
+const dummyData = {
   React: {
     title: 'React',
     questions: [
@@ -26,3 +26,17 @@ export const dummyData = {
     ]
   }
 };
+
+const storeDummyData = async () => {
+  try {
+    // AsyncStorage.setItem returns null everytime but it is enough to resolve the promise
+    await AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(dummyData));
+    return dummyData;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const formatDecksResults = decks => {
+  return decks !== null ? JSON.parse(decks) : storeDummyData();
+}
