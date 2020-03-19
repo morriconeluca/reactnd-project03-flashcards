@@ -5,6 +5,8 @@ import {FLASHCARDS_STORAGE_KEY, formatDecksResults} from './helpers';
 // Return all of the decks along with their titles, questions, and answers.
 export const getDecks = async () => {
   try {
+    // Uncomment to clear storage sometimes.
+    await AsyncStorage.clear();
     const decks = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY);
     return formatDecksResults(decks);
   } catch (error) {
@@ -23,7 +25,9 @@ export const getDeck = async id => {
 // Add title to a new deck.
 export const saveDeckTitle = async title => {
   try {
+    const decks = await getDecks();
     await AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
+      ...decks,
       [title]: {
         title,
         questions: []
