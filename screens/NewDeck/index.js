@@ -3,16 +3,12 @@ import {connect} from 'react-redux';
 import {SafeAreaView, Text} from 'react-native';
 import styles from '../../styles';
 
-const DeckList = ({decks}) => {
+const NewDeck = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{JSON.stringify(decks)}</Text>
+      <Text>New Deck!</Text>
     </SafeAreaView>
   );
 };
 
-const mapStateToProps = state => ({
-  decks: state
-});
-
-export default connect(mapStateToProps)(DeckList);
+export default connect()(NewDeck);
