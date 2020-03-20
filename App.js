@@ -3,10 +3,12 @@ import {Provider} from 'react-redux';
 import store from './store';
 import {handleGetDecks} from './actions';
 import {ActivityIndicator, SafeAreaView} from 'react-native';
+import {enableScreens} from 'react-native-screens';
 import styles from './styles';
 
 import DeckList from './screens/DeckList';
 
+enableScreens();
 
 export default function App() {
   const [loading, setLoading] = useState(true);
