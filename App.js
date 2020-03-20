@@ -4,11 +4,16 @@ import store from './store';
 import {handleGetDecks} from './actions';
 import {ActivityIndicator, SafeAreaView} from 'react-native';
 import {enableScreens} from 'react-native-screens';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import styles from './styles';
 
 import DeckList from './screens/DeckList';
 
 enableScreens();
+
+const Stack = createStackNavigator();
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -32,9 +37,15 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.container}>
-        <DeckList />
-      </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={DeckList}
+            options={{title: 'Flashcards'}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
