@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Provider} from 'react-redux';
 import store from './store';
 import {handleGetDecks} from './actions';
-import {StyleSheet, ActivityIndicator, SafeAreaView} from 'react-native';
+import {ActivityIndicator, SafeAreaView} from 'react-native';
+import styles from './styles';
 
 import DeckList from './screens/DeckList';
 
@@ -35,10 +36,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center'
-  }
-});

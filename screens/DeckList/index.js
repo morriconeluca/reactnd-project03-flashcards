@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {StyleSheet, Text, View} from 'react-native';
+import {View, Text} from 'react-native';
+import styles from '../../styles';
 
 const DeckList = ({decks}) => {
   return (
@@ -9,14 +10,6 @@ const DeckList = ({decks}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 const mapStateToProps = state => ({
   decks: state
