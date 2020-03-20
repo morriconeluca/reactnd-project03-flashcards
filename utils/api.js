@@ -14,14 +14,6 @@ export const getDecks = async () => {
   }
 }
 
-// Return the deck associated with that id.
-export const getDeck = async id => {
-  const decks = await getDecks().then(decks => {
-    return decks;
-  });
-  return decks[id];
-}
-
 // Add title to a new deck.
 export const saveDeckTitle = async title => {
   try {
@@ -41,9 +33,11 @@ export const saveDeckTitle = async title => {
 // Add the card to the cards list for the deck with the associated title.
 export const addCardToDeck = async (title, card) => {
   try {
-    const deck = await getDeck(title);
+    const decks = await getDecks();
+    const deck = decks[title];
 
     await AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
+      ...decks,
       [title]: {
         questions: [
           ...deck.questions,
