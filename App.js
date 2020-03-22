@@ -9,6 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from './screens/Home';
+import Deck from './screens/Deck';
 
 enableScreens();
 
@@ -42,6 +43,11 @@ export default function App() {
             name="Home"
             component={Home}
             options={{title: 'Flashcards'}}
+          />
+          <Stack.Screen
+            name="Deck"
+            component={Deck}
+            options={{title: 'Deck'}}
           />
         </Stack.Navigator>
       </NavigationContainer>
