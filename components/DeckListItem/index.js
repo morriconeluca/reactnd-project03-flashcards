@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {TouchableNativeFeedback, View, Text, StyleSheet} from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -14,17 +14,15 @@ const DeckListItem = ({deck}) => {
   };
 
   return (
-    <TouchableOpacity
-      style={styles.item}
-      onPress={onPress}
-      activeOpacity={0.5}
-    >
-      <View style={styles.flex}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.details}>{`${questions.length} cards`}</Text>
+    <TouchableNativeFeedback onPress={onPress}>
+      <View style={styles.item}>
+        <View style={styles.flex}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.details}>{`${questions.length} cards`}</Text>
+        </View>
+        <MaterialIcons name="arrow-forward" size={32} color="#212121"/>
       </View>
-      <MaterialIcons name="arrow-forward" size={32} color="#212121"/>
-    </TouchableOpacity>
+    </TouchableNativeFeedback>
   );
 };
 
