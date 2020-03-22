@@ -7,10 +7,9 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   Text,
-  Keyboard
+  Keyboard,
+  StyleSheet
 } from 'react-native';
-
-import styles from '../../styles';
 
 import Input from '../../components/Input';
 import MDButton from '../../components';
@@ -31,8 +30,8 @@ const NewDeck = ({dispatch}) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView style={styles.wrapper}
+    <SafeAreaView style={styles.flex}>
+      <KeyboardAvoidingView style={styles.container}
         behavior="position"
         enabled
       >
@@ -46,5 +45,22 @@ const NewDeck = ({dispatch}) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 16
+  },
+  flex: {
+    flex: 1
+  },
+  h1: {
+    color: '#212121',
+    fontSize: 32,
+    marginVertical: 8,
+    textAlign: 'center'
+  }
+});
 
 export default connect()(NewDeck);

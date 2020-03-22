@@ -2,12 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {Provider} from 'react-redux';
 import store from './store';
 import {handleGetDecks} from './actions';
-import {ActivityIndicator, SafeAreaView} from 'react-native';
+import {ActivityIndicator, SafeAreaView, StyleSheet} from 'react-native';
 import {enableScreens} from 'react-native-screens';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import styles from './styles';
 
 import Home from './screens/Home';
 
@@ -29,7 +28,7 @@ export default function App() {
 
   if (loading) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.middle}>
         <ActivityIndicator size="large" color="#1c73b4" />
       </SafeAreaView>
     );
@@ -48,4 +47,11 @@ export default function App() {
       </NavigationContainer>
     </Provider>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  middle: {
+    flex: 1,
+    justifyContent: 'center'
+  }
+});
