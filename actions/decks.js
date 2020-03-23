@@ -1,4 +1,4 @@
-import {saveDeckTitle, addCardToDeck} from '../utils/api';
+import {addCardToDeck} from '../utils/api';
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const CREATE_DECK = 'CREATE_DECK';
@@ -13,13 +13,6 @@ export const createDeck = title => ({
   type: CREATE_DECK,
   title
 });
-
-export const handleCreateDeck = title => (
-  async dispatch => {
-    await saveDeckTitle(title);
-    dispatch(createDeck(title));
-  }
-);
 
 export const addCard = (title, card) => ({
   type: ADD_CARD,

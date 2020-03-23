@@ -1,5 +1,5 @@
 import {RECEIVE_DECKS} from '../actions/decks';
-import {IS_LOADING} from '../actions/status';
+import {IS_LOADING, THROW_ERROR} from '../actions/status';
 
 const initialStatus = {
   loading: false,
@@ -17,6 +17,11 @@ export default function status(state = initialStatus, action) {
       return {
         ...state,
         loading: true
+      };
+    case THROW_ERROR:
+      return {
+        ...state,
+        error: action.error
       };
     default:
       return state;

@@ -17,7 +17,7 @@ const DeckListItem = ({deck}) => {
     <TouchableNativeFeedback onPress={onPress}>
       <View style={styles.item}>
         <View style={styles.flex}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title} numberOfLines={1}>{title}</Text>
           <Text style={styles.details}>{`${questions.length} cards`}</Text>
         </View>
         <MaterialIcons name="arrow-forward" size={32} color="#212121"/>

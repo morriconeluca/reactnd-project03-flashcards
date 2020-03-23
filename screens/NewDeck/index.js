@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {handleCreateDeck} from '../../actions/decks';
+import {handleCreateDeck} from '../../actions/shared';
 
 import {
   SafeAreaView,
@@ -14,7 +14,7 @@ import {
 import Input from '../../components/Input';
 import MDButton from '../../components';
 
-const NewDeck = ({dispatch}) => {
+const NewDeck = ({dispatch, loading, error}) => {
   const [title, setTitle] = useState('');
   const navigation = useNavigation();
 
@@ -41,6 +41,7 @@ const NewDeck = ({dispatch}) => {
           onChangeText={onChangeText}
         />
         <MDButton onPress={onPress}>Submit</MDButton>
+        <Text>{error}</Text>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -63,4 +64,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(NewDeck);
+const mapStateToProps = state => ({
+  loading: state.status.loading,
+  error: state.status.error
+});
+
+export default connect(mapStateToProps)(NewDeck);
