@@ -11,7 +11,7 @@ const Deck = ({deck}) => {
 };
 
 const mapStateToProps = (state, {route}) => ({
-  deck: state[route.params.title]
+  deck: state.decks[route.params.title]
 })
 
 export default connect(mapStateToProps)(Deck);

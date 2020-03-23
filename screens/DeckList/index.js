@@ -1,10 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {SafeAreaView, FlatList, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  ActivityIndicator,
+  Text,
+  FlatList,
+  StyleSheet
+} from 'react-native';
+
+import {handleGetDecks} from '../../actions/shared';
 
 import DeckListItem from '../../components/DeckListItem';
 
-const DeckList = ({decks}) => {
+const DeckList = ({decks, loading, dispatch}) => {
+  useEffect(() => {
+    dispatch(handleGetDecks());
+  }, []);
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color="#1c73b4" />
+      </SafeAreaView>
+    );
+  }
+
   if (Object.keys(decks).length === 0 && decks.constructor === Object) {
     return (
       <SafeAreaView style={styles.container}>
@@ -46,7 +66,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  decks: state
+  decks: state.decks,
+  loading: state.status.loading
 });
 
 export default connect(mapStateToProps)(DeckList);

@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, {id}) => ({
-  deck: state[id]
+  deck: state.decks[id]
 });
 
 export default connect(mapStateToProps)(DeckListItem);

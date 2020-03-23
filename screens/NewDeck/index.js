@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {handleCreateDeck} from '../../actions';
+import {handleCreateDeck} from '../../actions/decks';
 
 import {
   SafeAreaView,
