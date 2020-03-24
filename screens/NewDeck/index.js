@@ -23,10 +23,13 @@ const NewDeck = ({dispatch, loading, error}) => {
   };
 
   const onPress = () => {
-    dispatch(handleCreateDeck(title));
-    setTitle('');
-    Keyboard.dismiss();
-    navigation.navigate('DeckList');
+    const t = title.trim();
+    if (t) {
+      dispatch(handleCreateDeck(t));
+      setTitle('');
+      Keyboard.dismiss();
+      navigation.navigate('DeckList');
+    }
   };
 
   return (

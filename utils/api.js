@@ -6,7 +6,7 @@ import {FLASHCARDS_STORAGE_KEY, formatDecksResults} from './helpers';
 export const getDecks = async () => {
   try {
     // Uncomment to clear storage sometimes.
-    // await AsyncStorage.clear();
+    await AsyncStorage.clear();
     const decks = await AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY);
     return formatDecksResults(decks);
   } catch (error) {
