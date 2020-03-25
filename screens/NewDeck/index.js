@@ -25,10 +25,14 @@ const NewDeck = ({dispatch, loading, error}) => {
   const onPress = () => {
     const t = title.trim();
     if (t) {
-      dispatch(handleCreateDeck(t));
-      setTitle('');
       Keyboard.dismiss();
-      navigation.navigate('DeckList');
+      dispatch(handleCreateDeck(t))
+        .then(() => {
+          if (!error) {
+            setTitle('');
+            navigation.navigate('DeckList');
+          }
+        });
     }
   };
 
@@ -43,7 +47,7 @@ const NewDeck = ({dispatch, loading, error}) => {
           value={title}
           onChangeText={onChangeText}
         />
-        <MDButton onPress={onPress}>Submit</MDButton>
+        <MDButton onPress={onPress} loading={loading}>Submit</MDButton>
         <Text>{error}</Text>
       </KeyboardAvoidingView>
     </SafeAreaView>

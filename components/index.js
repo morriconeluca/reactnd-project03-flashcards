@@ -3,10 +3,11 @@ import {
   TouchableNativeFeedback,
   View,
   Text,
+  ActivityIndicator,
   StyleSheet
 } from 'react-native';
 
-const MDButton = ({onPress, backgroundColor, color, children}) => {
+const MDButton = ({onPress, backgroundColor, color, loading, children}) => {
   return (
     <TouchableNativeFeedback
       onPress={onPress}
@@ -16,14 +17,17 @@ const MDButton = ({onPress, backgroundColor, color, children}) => {
           backgroundColor: backgroundColor || '#2962ff'
         }]}
       >
-        <Text
-          style={[
-            styles.text,
-            {color: color || '#fff'}
-          ]}
-        >
-          {children}
-        </Text>
+        {!loading
+          ? <Text
+              style={[
+                styles.text,
+                {color: color || '#fff'}
+              ]}
+            >
+              {children}
+            </Text>
+          : <ActivityIndicator size="small" color={color || '#fff'}/>
+        }
       </View>
     </TouchableNativeFeedback>
   );
@@ -31,13 +35,13 @@ const MDButton = ({onPress, backgroundColor, color, children}) => {
 
 const styles = StyleSheet.create({
   button: {
+    alignItems: 'center',
     borderRadius: 4,
     marginVertical: 8,
     padding: 16
   },
   text: {
-    fontSize: 24,
-    textAlign: 'center'
+    fontSize: 24
   }
 });
 

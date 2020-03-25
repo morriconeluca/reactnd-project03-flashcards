@@ -12,6 +12,7 @@ export const handleGetDecks = () => (
 
 export const handleCreateDeck = title => (
   async dispatch => {
+    dispatch(isLoading());
     const decks = await getDecks();
     if (!(title in decks)) {
       await saveDeckTitle(title);
