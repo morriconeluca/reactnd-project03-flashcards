@@ -20,7 +20,7 @@ const DeckListItem = ({deck}) => {
           <Text style={styles.title} numberOfLines={1}>{title}</Text>
           <Text style={styles.details}>{`${questions.length} cards`}</Text>
         </View>
-        <MaterialIcons name="arrow-forward" size={32} color="#212121"/>
+        <MaterialIcons name="arrow-forward" size={24} color="#212121"/>
       </View>
     </TouchableNativeFeedback>
   );
@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
   item: {
     alignItems: 'center',
     backgroundColor: '#fff',
+    borderBottomColor: '#eee',
+    borderBottomWidth: 1,
     flexDirection: 'row',
     padding: 16
   },

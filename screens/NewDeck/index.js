@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Text,
   Keyboard,
+  Alert,
   StyleSheet
 } from 'react-native';
 
@@ -33,6 +34,13 @@ const NewDeck = ({decks, loading, dispatch}) => {
     if (t) {
       Keyboard.dismiss();
       dispatch(handleCreateDeck(t))
+    } else {
+      Alert.alert(
+        'Warning',
+        'Please, insert a valid title.',
+        [],
+        {cancelable: true}
+      )
     }
   };
 

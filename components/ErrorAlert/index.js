@@ -12,7 +12,7 @@ const ErrorAlert = ({error, dispatch}) => {
     <View>
       <Text>
         {error && Alert.alert(
-          'Sorry:',
+          'Error',
           error,
           [
             {
