@@ -18,7 +18,7 @@ export const handleCreateDeck = title => (
       await saveDeckTitle(title);
       dispatch(createDeck(title));
     } else {
-      dispatch(throwError('Error! There is a deck with the same title!'));
+      dispatch(throwError('There is a deck with the same title!'));
     }
   }
 );

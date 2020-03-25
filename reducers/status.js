@@ -1,5 +1,5 @@
 import {RECEIVE_DECKS, CREATE_DECK} from '../actions/decks';
-import {IS_LOADING, THROW_ERROR} from '../actions/status';
+import {IS_LOADING, THROW_ERROR, CLEAR_ERROR} from '../actions/status';
 
 const initialStatus = {
   loading: false,
@@ -10,18 +10,19 @@ export default function status(state = initialStatus, action) {
   switch (action.type) {
     case RECEIVE_DECKS:
     case CREATE_DECK:
+    case CLEAR_ERROR:
       return {
-        ...state,
-        loading: false
+        loading: false,
+        error: ''
       };
     case IS_LOADING:
       return {
-        ...state,
-        loading: true
+        loading: true,
+        error: ''
       };
     case THROW_ERROR:
       return {
-        ...state,
+        loading: false,
         error: action.error
       };
     default:

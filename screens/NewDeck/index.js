@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {handleCreateDeck} from '../../actions/shared';
@@ -12,11 +12,17 @@ import {
 } from 'react-native';
 
 import Input from '../../components/Input';
-import MDButton from '../../components';
+import MDButton from '../../components/MDButton';
+import ErrorAlert from '../../components/ErrorAlert';
 
-const NewDeck = ({dispatch, loading, error}) => {
+const NewDeck = ({decks, loading, dispatch}) => {
   const [title, setTitle] = useState('');
   const navigation = useNavigation();
+
+  useEffect(() => {
+    setTitle('');
+    navigation.navigate('DeckList');
+  }, [decks]);
 
   const onChangeText = text => {
     setTitle(text);
@@ -27,12 +33,6 @@ const NewDeck = ({dispatch, loading, error}) => {
     if (t) {
       Keyboard.dismiss();
       dispatch(handleCreateDeck(t))
-        .then(() => {
-          if (!error) {
-            setTitle('');
-            navigation.navigate('DeckList');
-          }
-        });
     }
   };
 
@@ -47,8 +47,8 @@ const NewDeck = ({dispatch, loading, error}) => {
           value={title}
           onChangeText={onChangeText}
         />
-        <MDButton onPress={onPress} loading={loading}>Submit</MDButton>
-        <Text>{error}</Text>
+        <MDButton onPress={onPress} loading={loading} prova={() => {console.log('mounted');}}>Submit</MDButton>
+        <ErrorAlert />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+  decks: state.decks,
   loading: state.status.loading,
   error: state.status.error
 });
