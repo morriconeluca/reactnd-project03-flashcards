@@ -1,4 +1,4 @@
-import {getDecks, saveDeckTitle} from '../utils/api';
+import {getDecks, saveDeckTitle, deleteDeck} from '../utils/api';
 import {receiveDecks, createDeck} from './decks';
 import {isLoading, throwError} from './status';
 
@@ -20,5 +20,13 @@ export const handleCreateDeck = title => (
     } else {
       dispatch(throwError('There is a deck with the same title!'));
     }
+  }
+);
+
+export const handleDeleteDeck = title => (
+  async dispatch => {
+    dispatch(isLoading());
+    const decks = await deleteDeck(title);
+    dispatch(receiveDecks(decks));
   }
 );

@@ -33,7 +33,7 @@ const NewDeck = ({decks, loading, dispatch}) => {
     const t = title.trim();
     if (t) {
       Keyboard.dismiss();
-      dispatch(handleCreateDeck(t))
+      dispatch(handleCreateDeck(t));
     } else {
       Alert.alert(
         'Warning',
@@ -54,8 +54,9 @@ const NewDeck = ({decks, loading, dispatch}) => {
         <Input
           value={title}
           onChangeText={onChangeText}
+          placeholder="Deck Title"
         />
-        <MDButton onPress={onPress} loading={loading} prova={() => {console.log('mounted');}}>Submit</MDButton>
+        <MDButton onPress={onPress} loading={loading}>Submit</MDButton>
         <ErrorAlert />
       </KeyboardAvoidingView>
     </SafeAreaView>

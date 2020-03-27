@@ -13,10 +13,10 @@ const Home = ({loading}) => {
       <Tab.Screen
         name="DeckList"
         component={DeckList}
-        options={{tabBarLabel: 'Deck List'}}
+        options={{tabBarLabel: 'Decks'}}
         listeners={{
           tabPress: e => {
-            // Prevent press tab when something is loading
+            // Prevent pressing tab when something is loading
             loading && e.preventDefault();
           }
         }}

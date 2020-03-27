@@ -1,21 +1,51 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {connect} from 'react-redux';
 import {
   SafeAreaView,
   ActivityIndicator,
   Text,
   FlatList,
+  Alert,
   StyleSheet
 } from 'react-native';
-
-import {handleGetDecks} from '../../actions/shared';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {handleGetDecks, handleDeleteDeck} from '../../actions/shared';
 
 import DeckListItem from '../../components/DeckListItem';
 
-const DeckList = ({decks, loading, dispatch}) => {
+const DeckList = ({decks, loading, dispatch, route}) => {
   useEffect(() => {
     dispatch(handleGetDecks());
   }, []);
+
+  const navigation = useNavigation();
+
+  useFocusEffect(
+    useCallback(() => {
+      if (route.params && route.params.deckToDelete) {
+        const {deckToDelete} = route.params;
+
+        Alert.alert(
+          `Are you sure you want to delete the ${deckToDelete} deck?`,
+          'This item will be deleted immediately. You can\'t undo this action.',
+          [
+            {
+              text: 'Cancel', onPress: () => {
+                navigation.setParams({deckToDelete: null});
+              }
+            },
+            {
+              text: 'Delete', onPress: () => {
+                dispatch(handleDeleteDeck(deckToDelete));
+                navigation.setParams({deckToDelete: null});
+              }
+            }
+          ],
+          {cancelable: false}
+        );
+      }
+    }, [route])
+  );
 
   if (loading) {
     return (

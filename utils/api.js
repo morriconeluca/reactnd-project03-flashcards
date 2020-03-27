@@ -30,6 +30,18 @@ export const saveDeckTitle = async title => {
   }
 };
 
+// Delete deck.
+export const deleteDeck = async title => {
+  try {
+    let decks = await getDecks();
+    delete decks[title];
+    await AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks));
+    return decks;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Add the card to the cards list for the deck with the associated title.
 export const addCardToDeck = async (title, card) => {
   try {

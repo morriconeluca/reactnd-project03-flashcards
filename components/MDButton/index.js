@@ -7,14 +7,22 @@ import {
   StyleSheet
 } from 'react-native';
 
-const MDButton = ({onPress, backgroundColor, color, loading, children}) => {
+const MDButton = ({
+  onPress,
+  backgroundColor,
+  borderColor,
+  color,
+  loading,
+  children}) => {
   return (
     <TouchableNativeFeedback
       onPress={onPress}
     >
       <View
         style={[styles.button, {
-          backgroundColor: backgroundColor || '#2962ff'
+          backgroundColor: backgroundColor || '#2962ff',
+          borderColor,
+          borderWidth: borderColor && 2
         }]}
       >
         {!loading
