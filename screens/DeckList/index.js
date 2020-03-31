@@ -63,7 +63,9 @@ const DeckList = ({decks, loading, dispatch, route}) => {
     );
   }
 
-  decks = Object.keys(decks).map(title => {
+  decks = Object.keys(decks)
+    .sort()
+    .map(title => {
     return decks[title];
   });
 
