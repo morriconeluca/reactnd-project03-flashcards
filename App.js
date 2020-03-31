@@ -8,6 +8,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from './screens/Home';
 import Deck from './screens/Deck';
+import NewCard from './screens/NewCard';
 
 enableScreens();
 
@@ -26,7 +27,16 @@ export default function App() {
           <Stack.Screen
             name="Deck"
             component={Deck}
-            options={{title: 'Deck'}}
+            options={({route}) => ({
+              title: `Deck: "${route.params.title}"`
+            })}
+          />
+          <Stack.Screen
+            name="NewCard"
+            component={NewCard}
+            options={({route}) => ({
+              title: `Add a new card to "${route.params.title}" deck`
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>

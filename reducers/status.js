@@ -1,4 +1,4 @@
-import {RECEIVE_DECKS, CREATE_DECK} from '../actions/decks';
+import {RECEIVE_DECKS, CREATE_DECK, ADD_CARD} from '../actions/decks';
 import {IS_LOADING, THROW_ERROR, CLEAR_ERROR} from '../actions/status';
 
 const initialStatus = {
@@ -11,6 +11,7 @@ export default function status(state = initialStatus, action) {
     case RECEIVE_DECKS:
     case CREATE_DECK:
     case CLEAR_ERROR:
+    case ADD_CARD:
       return {
         loading: false,
         error: ''

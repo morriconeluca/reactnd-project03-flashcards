@@ -1,5 +1,10 @@
-import {getDecks, saveDeckTitle, deleteDeck} from '../utils/api';
-import {receiveDecks, createDeck} from './decks';
+import {
+  getDecks,
+  saveDeckTitle,
+  deleteDeck,
+  addCardToDeck
+} from '../utils/api';
+import {receiveDecks, createDeck, addCard} from './decks';
 import {isLoading, throwError} from './status';
 
 export const handleGetDecks = () => (
@@ -28,5 +33,13 @@ export const handleDeleteDeck = title => (
     dispatch(isLoading());
     const decks = await deleteDeck(title);
     dispatch(receiveDecks(decks));
+  }
+);
+
+export const handleAddCard = (title, card) => (
+  async dispatch => {
+    dispatch(isLoading());
+    await addCardToDeck(title, card);
+    dispatch(addCard(title, card));
   }
 );

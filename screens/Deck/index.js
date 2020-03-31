@@ -10,7 +10,7 @@ const Deck = ({deck}) => {
   const navigation = useNavigation();
 
   const addCard = () => {
-
+    navigation.navigate('NewCard', {title});
   };
 
   const startQuiz = () => {
