@@ -14,7 +14,7 @@ const Deck = ({deck}) => {
   };
 
   const startQuiz = () => {
-
+    navigation.navigate('Quiz', {title});
   };
 
   const deleteDeck = () => {

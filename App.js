@@ -9,6 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from './screens/Home';
 import Deck from './screens/Deck';
 import NewCard from './screens/NewCard';
+import Quiz from './screens/Quiz';
 
 enableScreens();
 
@@ -36,6 +37,13 @@ export default function App() {
             component={NewCard}
             options={({route}) => ({
               title: `Add a new card to "${route.params.title}" deck`
+            })}
+          />
+          <Stack.Screen
+            name="Quiz"
+            component={Quiz}
+            options={({route}) => ({
+              title: `Quiz for: "${route.params.title}"`
             })}
           />
         </Stack.Navigator>
