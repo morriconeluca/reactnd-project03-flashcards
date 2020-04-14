@@ -45,11 +45,8 @@ const NewDeck = ({decks, loading, dispatch}) => {
 
   return (
     <SafeAreaView style={styles.flex}>
-      <KeyboardAvoidingView style={[
-        styles.container,
-        Platform.OS === 'ios' && {paddingTop: 100}
-      ]}
-        behavior="position"
+      <KeyboardAvoidingView style={styles.container}
+        behavior="height"
         enabled
       >
         <Text style={styles.h1}>What is the title of your new deck?</Text>
@@ -69,7 +66,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 16
+    padding: 16,
+    paddingBottom: 96
   },
   flex: {
     flex: 1

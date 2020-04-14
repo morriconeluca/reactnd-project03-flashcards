@@ -49,7 +49,7 @@ const NewCard = ({title, loading, dispatch}) => {
   return (
     <SafeAreaView style={styles.flex}>
       <KeyboardAvoidingView style={styles.container}
-        behavior="position"
+        behavior="height"
         enabled
       >
         <Text style={styles.h1}>Add a new card</Text>
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 16
+    padding: 16,
+    paddingBottom: 96
   },
   flex: {
     flex: 1
