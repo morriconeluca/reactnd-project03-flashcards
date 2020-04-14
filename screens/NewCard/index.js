@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import Input from '../../components/Input';
-import MDButton from '../../components/MDButton';
+import CPButton from '../../components/CPButton';
 import ErrorAlert from '../../components/ErrorAlert';
 
 const NewCard = ({title, loading, dispatch}) => {
@@ -41,9 +41,7 @@ const NewCard = ({title, loading, dispatch}) => {
     } else {
       Alert.alert(
         'Warning',
-        'Please, insert a valid queastion and answer.',
-        [],
-        {cancelable: true}
+        'Please, insert a valid queastion and answer.'
       )
     }
   };
@@ -65,7 +63,7 @@ const NewCard = ({title, loading, dispatch}) => {
           onChangeText={onChangeAnswer}
           placeholder="Answer"
         />
-        <MDButton onPress={onPress} loading={loading}>Create Card</MDButton>
+        <CPButton onPress={onPress} loading={loading}>Create Card</CPButton>
         <ErrorAlert />
       </KeyboardAvoidingView>
     </SafeAreaView>

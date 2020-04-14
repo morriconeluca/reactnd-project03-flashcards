@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 
 import {Animated, View, Text, StyleSheet} from 'react-native';
-import MDButton from '../../MDButton';
+import CPButton from '../../CPButton';
 
 const Answer = ({
   questions,
@@ -59,25 +59,25 @@ const Answer = ({
         <Text style={styles.h1}>{questions[currentIndex].answer}</Text>
       </View>
       <View>
-        <MDButton
+        <CPButton
           onPress={addPoint}
           backgroundColor="#2e7d32"
         >
           Correct
-        </MDButton>
-        <MDButton
+        </CPButton>
+        <CPButton
           onPress={nextQuestion}
           backgroundColor="#c62828"
         >
           Incorrect
-        </MDButton>
-        <MDButton
+        </CPButton>
+        <CPButton
           onPress={backToQuestion}
           backgroundColor="#e0e0e0"
           color="#2962ff"
         >
           Question
-        </MDButton>
+        </CPButton>
       </View>
     </Animated.View>
   );

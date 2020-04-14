@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Alert, SafeAreaView, ScrollView, View, Text, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import MDButton from '../../components/MDButton';
+import CPButton from '../../components/CPButton';
 
 const Deck = ({deck}) => {
   const {title, questions} = deck;
@@ -36,23 +36,23 @@ const Deck = ({deck}) => {
           <Text style={styles.details}>{questions.length} cards</Text>
         </View>
         <View>
-          <MDButton
+          <CPButton
             onPress={addCard}
           >
             Add Card
-          </MDButton>
-          <MDButton
+          </CPButton>
+          <CPButton
             onPress={startQuiz}
           >
             Start Quiz
-          </MDButton>
-          <MDButton
+          </CPButton>
+          <CPButton
             onPress={deleteDeck}
             backgroundColor="#e0e0e0"
             color="#2962ff"
           >
             Delete Deck
-          </MDButton>
+          </CPButton>
         </View>
       </ScrollView>
     </SafeAreaView>

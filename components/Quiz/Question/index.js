@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 
 import {Animated, View, Text, StyleSheet} from 'react-native';
-import MDButton from '../../MDButton';
+import CPButton from '../../CPButton';
 
 const Question = ({
   questions,
@@ -46,11 +46,11 @@ const Question = ({
         <Text style={styles.h1}>{questions[currentIndex].question}</Text>
       </View>
       <View>
-        <MDButton
+        <CPButton
           onPress={onPress}
         >
           Answer
-        </MDButton>
+        </CPButton>
       </View>
     </Animated.View>
   );

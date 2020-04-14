@@ -9,11 +9,12 @@ import {
   Text,
   Keyboard,
   Alert,
+  Platform,
   StyleSheet
 } from 'react-native';
 
 import Input from '../../components/Input';
-import MDButton from '../../components/MDButton';
+import CPButton from '../../components/CPButton';
 import ErrorAlert from '../../components/ErrorAlert';
 
 const NewDeck = ({decks, loading, dispatch}) => {
@@ -44,7 +45,10 @@ const NewDeck = ({decks, loading, dispatch}) => {
 
   return (
     <SafeAreaView style={styles.flex}>
-      <KeyboardAvoidingView style={styles.container}
+      <KeyboardAvoidingView style={[
+        styles.container,
+        Platform.OS === 'ios' && {paddingTop: 100}
+      ]}
         behavior="position"
         enabled
       >
@@ -54,7 +58,7 @@ const NewDeck = ({decks, loading, dispatch}) => {
           onChangeText={onChangeText}
           placeholder="Deck Title"
         />
-        <MDButton onPress={onPress} loading={loading}>Create Deck</MDButton>
+        <CPButton onPress={onPress} loading={loading}>Create Deck</CPButton>
         <ErrorAlert />
       </KeyboardAvoidingView>
     </SafeAreaView>

@@ -2,7 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import {Animated, View, Text, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import MDButton from '../../MDButton';
+import CPButton from '../../CPButton';
 
 const Results = ({
   questions,
@@ -59,16 +59,16 @@ const Results = ({
         </Text>
       </View>
       <View>
-        <MDButton
+        <CPButton
           onPress={restartQuiz}
         >
           Restart Quiz
-        </MDButton>
-        <MDButton
+        </CPButton>
+        <CPButton
           onPress={endQuiz}
         >
           Back to Deck
-        </MDButton>
+        </CPButton>
       </View>
     </Animated.View>
   );

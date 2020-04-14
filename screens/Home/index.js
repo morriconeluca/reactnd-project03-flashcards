@@ -1,19 +1,25 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+
+import {Ionicons} from '@expo/vector-icons';
 
 import DeckList from '../DeckList';
 import NewDeck from '../NewDeck';
 
-const Tab = createMaterialTopTabNavigator();
+import CPTab from '../../components/CPTab';
 
 const Home = ({loading}) => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
+    <CPTab.Navigator>
+      <CPTab.Screen
         name="DeckList"
         component={DeckList}
-        options={{tabBarLabel: 'Decks'}}
+        options={{
+          tabBarLabel: 'Decks',
+          tabBarIcon: () => (
+            <Ionicons name="ios-list" size={24} color="#212121" />
+          ),
+        }}
         listeners={{
           tabPress: e => {
             // Prevent pressing tab when something is loading
@@ -21,12 +27,17 @@ const Home = ({loading}) => {
           }
         }}
       />
-      <Tab.Screen
+      <CPTab.Screen
         name="NewDeck"
         component={NewDeck}
-        options={{tabBarLabel: 'New Deck'}}
+        options={{
+          tabBarLabel: 'New Deck',
+          tabBarIcon: () => (
+            <Ionicons name="ios-add-circle-outline" size={24} color="#212121" />
+          ),
+        }}
       />
-    </Tab.Navigator>
+    </CPTab.Navigator>
   );
 };
 

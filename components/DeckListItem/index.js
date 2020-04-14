@@ -1,8 +1,10 @@
 import React, {useRef, useEffect} from 'react';
-import {Animated, TouchableNativeFeedback, View, Text, StyleSheet} from 'react-native';
-import {MaterialIcons} from '@expo/vector-icons';
+import {Animated, View, Text, Platform, StyleSheet} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
+
+import CPTouchable from '../CPTouchable';
 
 const DeckListItem = ({deck}) => {
   const fade = useRef(new Animated.Value(0)).current;
@@ -40,15 +42,22 @@ const DeckListItem = ({deck}) => {
     <Animated.View
       style={{opacity: fade}}
     >
-      <TouchableNativeFeedback onPress={onPress}>
+      <CPTouchable onPress={onPress}>
         <View style={styles.item}>
           <View style={styles.flex}>
             <Text style={styles.title} numberOfLines={1}>{title}</Text>
             <Text style={styles.details}>{`${questions.length} cards`}</Text>
           </View>
-          <MaterialIcons name="arrow-forward" size={24} color="#212121"/>
+          <Ionicons
+            name={Platform.select({
+              android: 'md-arrow-forward',
+              ios: 'ios-arrow-forward'
+            })}
+            size={24}
+            color="#212121"
+          />
         </View>
-      </TouchableNativeFeedback>
+      </CPTouchable>
     </Animated.View>
   );
 };

@@ -1,13 +1,14 @@
 import React from 'react';
 import {
-  TouchableNativeFeedback,
   View,
   Text,
   ActivityIndicator,
   StyleSheet
 } from 'react-native';
 
-const MDButton = ({
+import CPTouchable from '../CPTouchable';
+
+const CPButton = ({
   onPress,
   backgroundColor,
   borderColor,
@@ -15,7 +16,7 @@ const MDButton = ({
   loading,
   children}) => {
   return (
-    <TouchableNativeFeedback
+    <CPTouchable
       onPress={onPress}
     >
       <View
@@ -37,7 +38,7 @@ const MDButton = ({
           : <ActivityIndicator size="small" color={color || '#fff'}/>
         }
       </View>
-    </TouchableNativeFeedback>
+    </CPTouchable>
   );
 };
 
@@ -53,4 +54,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MDButton;
+export default CPButton;
