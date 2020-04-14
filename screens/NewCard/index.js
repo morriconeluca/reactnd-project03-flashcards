@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {handleAddCard} from '../../actions/shared';
@@ -65,7 +65,7 @@ const NewCard = ({title, loading, dispatch}) => {
           onChangeText={onChangeAnswer}
           placeholder="Answer"
         />
-        <MDButton onPress={onPress} loading={loading}>Submit</MDButton>
+        <MDButton onPress={onPress} loading={loading}>Create Card</MDButton>
         <ErrorAlert />
       </KeyboardAvoidingView>
     </SafeAreaView>

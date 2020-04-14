@@ -37,9 +37,7 @@ const NewDeck = ({decks, loading, dispatch}) => {
     } else {
       Alert.alert(
         'Warning',
-        'Please, insert a valid title.',
-        [],
-        {cancelable: true}
+        'Please, insert a valid title.'
       )
     }
   };
@@ -56,7 +54,7 @@ const NewDeck = ({decks, loading, dispatch}) => {
           onChangeText={onChangeText}
           placeholder="Deck Title"
         />
-        <MDButton onPress={onPress} loading={loading}>Submit</MDButton>
+        <MDButton onPress={onPress} loading={loading}>Create Deck</MDButton>
         <ErrorAlert />
       </KeyboardAvoidingView>
     </SafeAreaView>

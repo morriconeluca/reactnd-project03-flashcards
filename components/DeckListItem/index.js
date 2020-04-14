@@ -1,10 +1,33 @@
-import React from 'react';
-import {TouchableNativeFeedback, View, Text, StyleSheet} from 'react-native';
+import React, {useRef, useEffect} from 'react';
+import {Animated, TouchableNativeFeedback, View, Text, StyleSheet} from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 const DeckListItem = ({deck}) => {
+  const fade = useRef(new Animated.Value(0)).current;
+
+  const fadeIn = () => {
+    Animated.timing(fade, {
+      toValue: 1,
+      duration: 300
+    }).start();
+  };
+
+  const fadeOut = () => {
+    Animated.timing(fade, {
+      toValue: 0,
+      duration: 300
+    }).start();
+  };
+
+  useEffect(() => {
+    fadeIn();
+    return () => {
+      fadeOut();
+    };
+  }, []);
+
   const {title, questions} = deck;
 
   const navigation = useNavigation();
@@ -14,15 +37,19 @@ const DeckListItem = ({deck}) => {
   };
 
   return (
-    <TouchableNativeFeedback onPress={onPress}>
-      <View style={styles.item}>
-        <View style={styles.flex}>
-          <Text style={styles.title} numberOfLines={1}>{title}</Text>
-          <Text style={styles.details}>{`${questions.length} cards`}</Text>
+    <Animated.View
+      style={{opacity: fade}}
+    >
+      <TouchableNativeFeedback onPress={onPress}>
+        <View style={styles.item}>
+          <View style={styles.flex}>
+            <Text style={styles.title} numberOfLines={1}>{title}</Text>
+            <Text style={styles.details}>{`${questions.length} cards`}</Text>
+          </View>
+          <MaterialIcons name="arrow-forward" size={24} color="#212121"/>
         </View>
-        <MaterialIcons name="arrow-forward" size={24} color="#212121"/>
-      </View>
-    </TouchableNativeFeedback>
+      </TouchableNativeFeedback>
+    </Animated.View>
   );
 };
 
