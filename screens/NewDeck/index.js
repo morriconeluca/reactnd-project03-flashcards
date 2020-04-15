@@ -22,8 +22,11 @@ const NewDeck = ({decks, loading, dispatch}) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    setTitle('');
-    navigation.navigate('DeckList');
+    if (title) {
+      const t = title.trim();
+      setTitle('');
+      navigation.navigate('Deck', {title: t});
+    }
   }, [decks]);
 
   const onChangeText = text => {
