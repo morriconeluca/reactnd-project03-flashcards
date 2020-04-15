@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {handleGetDecks, handleDeleteDeck} from '../../actions/shared';
+import {setLocalNotification} from '../../utils/helpers';
 
 import DeckListItem from '../../components/DeckListItem';
 
 const DeckList = ({decks, loading, dispatch, route}) => {
   useEffect(() => {
     dispatch(handleGetDecks());
+    setLocalNotification();
   }, []);
 
   const navigation = useNavigation();

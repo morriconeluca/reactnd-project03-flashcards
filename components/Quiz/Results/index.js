@@ -1,6 +1,10 @@
 import React, {useRef, useEffect} from 'react';
 import {Animated, View, Text, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from '../../../utils/helpers';
 
 import CPButton from '../../CPButton';
 
@@ -30,6 +34,10 @@ const Results = ({
 
   useEffect(() => {
     fadeIn();
+
+    clearLocalNotification()
+      .then(setLocalNotification);
+
     return () => {
       fadeOut();
     };

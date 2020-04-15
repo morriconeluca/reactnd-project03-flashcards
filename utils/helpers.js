@@ -1,6 +1,10 @@
 import {AsyncStorage} from 'react-native';
+import {Notifications} from 'expo';
+import * as Permissions from 'expo-permissions';
 
 export const FLASHCARDS_STORAGE_KEY = '@flashcards_Storage_Key';
+
+const FLASHCARDS_NOTIFICATION_KEY = '@flashcards_Notification_Key';
 
 const dummyData = {
   React: {
@@ -40,3 +44,54 @@ const storeDummyData = async () => {
 export const formatDecksResults = decks => {
   return decks !== null ? JSON.parse(decks) : storeDummyData();
 }
+
+export const clearLocalNotification = async () => {
+  try {
+    await AsyncStorage.removeItem(FLASHCARDS_NOTIFICATION_KEY);
+    Notifications.cancelAllScheduledNotificationsAsync();
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+const createNotification = () => ({
+  title: "You haven't studied today!",
+  body: "👋 don't forget to complete at least one quiz!",
+  ios: {
+    sound: true
+  },
+  android: {
+    sound: true
+  }
+});
+
+export const setLocalNotification = async () => {
+  try {
+    let data = await AsyncStorage.getItem(FLASHCARDS_NOTIFICATION_KEY);
+    if (JSON.parse(data) === null) {
+      const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      if (status === 'granted') {
+        await Notifications.cancelAllScheduledNotificationsAsync();
+
+        await Notifications.scheduleLocalNotificationAsync(
+          createNotification(),
+          {
+            time: (new Date()).getTime() + 86400000,
+            repeat: 'day',
+          }
+        );
+
+        try {
+          await AsyncStorage.setItem(
+            FLASHCARDS_NOTIFICATION_KEY,
+            JSON.stringify(true)
+          );
+        } catch(error) {
+          console.log(error);
+        }
+      }
+    }
+  } catch(error) {
+    console.log(error);
+  }
+};
